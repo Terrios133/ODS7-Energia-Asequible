@@ -30,15 +30,12 @@ printf("\n------------------------------------------------------------\n");
             }while(HORASREPORTE[i] < 0 || HORASREPORTE[i] > 15);//Validacion para que no se ingresen numeros negativos o muy altos
 }
 
-// 🔹 Suma de consumos
+// Suma de consumos
 for (int i = 0; i < 24; i++) {
     HORA[i] = HORASAUTO[i] + HORASREPORTE[i];
 }
 
-            for (int i = 0; i < 24; i++) {
-            HORA[i] = HORASAUTO[i] + HORASREPORTE[i];
-            }
-            }
+}
  void simuladorAhorro(float HSIMULADOR[24], char USER[13]) {
     printf("------------------------------------------------------------\n");
     printf("\t----------S I M U L A D O R   D E  A H O R R O----------\n%s a continuacion ingresa el consumo simulado por hora y eso se comparara con los datos ingresados en la base\n", USER);
@@ -74,11 +71,10 @@ int main() {
 
 
     char USER[13];//Es para que el nombre de usuario no sea tan largo
-    int MENUPRINCIPAL=0, DIACTUAL=0, VERDIA=0, DIA1= 0, DIA2= 0;
+    int MENUPRINCIPAL=0, DIACTUAL=0, VERDIA=0, DIA1= 0, DIA2= 0; //
     float HORA[24]={0}, HORASAUTO[24]={0}, HORASREPORTE[24]={0}, HSIMULADOR[24]={0}, DIAS[30][24]={0}; 
     int OPCIONAIREYREFRI=0;
     float TOTALDIAS=0, TOTALPAGAR=0, PRECIOKWH=0, TOTALDIA1=0, TOTALDIA2 = 0;
-    
     float TOTALBASE=0, TOTALSIMULADOR=0;
     float TOTALDIAOTROREPORTE = 0;
 
@@ -87,7 +83,7 @@ int main() {
     scanf("%12s",USER);
     printf("------------------------------------------------------------\n");
     printf("Cómo segundo paso puedes escoger el precio de tus kwh esto se hace debido a que en cada región varía\n");
-    printf("\n------------------------------------------------------------\n");
+    printf("------------------------------------------------------------\n");
     printf("%s ingresa manualmente el precio de tus kwh: ", USER);
     scanf("%f", &PRECIOKWH);
     printf("\nEso se hizo con la intencion que los datos mostrados sean más exactos :)\n------------------------------------------------------------\n");
@@ -135,9 +131,10 @@ do {
     
 if(MENUPRINCIPAL > 8 || MENUPRINCIPAL < 1){
  printf("\n-----------------------  ᶻ 𝗓 𐰁 .ᐟ  -----------------------\n");
- printf("%s esa opción es INVALIDA, porfavor ingresa una opción válida ‹𝟹 \n", USER);
+ printf("%s esa opcion es invalida \n", USER);
+ break;
 }
-else {
+else if (MENUPRINCIPAL < 8 || MENUPRINCIPAL > 1){
     switch (MENUPRINCIPAL) {
         case 1:
             captura24Horas(HORA, HORASAUTO, HORASREPORTE, USER);
