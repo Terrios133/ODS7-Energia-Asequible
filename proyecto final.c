@@ -29,7 +29,6 @@ printf("\n------------------------------------------------------------\n");
             }
             }while(HORASREPORTE[i] < 0 || HORASREPORTE[i] > 15);//Validacion para que no se ingresen numeros negativos o muy altos
 }
-
 // Suma de consumos
 for (int i = 0; i < 24; i++) {
     HORA[i] = HORASAUTO[i] + HORASREPORTE[i];
@@ -132,9 +131,8 @@ do {
 if(MENUPRINCIPAL > 8 || MENUPRINCIPAL < 1){
  printf("\n-----------------------  ᶻ 𝗓 𐰁 .ᐟ  -----------------------\n");
  printf("%s esa opcion es invalida \n", USER);
- break;
+ continue; 
 }
-else if (MENUPRINCIPAL < 8 || MENUPRINCIPAL > 1){
     switch (MENUPRINCIPAL) {
         case 1:
             captura24Horas(HORA, HORASAUTO, HORASREPORTE, USER);
@@ -145,6 +143,11 @@ else if (MENUPRINCIPAL < 8 || MENUPRINCIPAL > 1){
         HORA[i] = HORASAUTO[i] + HORASREPORTE[i];
         TOTALDIAS = TOTALDIAS + HORA[i];
     }
+    if (TOTALDIAS == 0){
+    printf("\n------------------------------------------------------------\n");
+    printf("%s, no se han ingresado datos en captura 24HRS\nni tampoco tienes aparatos conectado las 24HRS\n", USER);
+    break;
+}
     TOTALPAGAR = TOTALDIAS * PRECIOKWH;
             printf("------------------------------------------------------------");
             printf("\n\t---------- R E P O R T E  D E  B A S E ----------\n");
@@ -156,9 +159,6 @@ else if (MENUPRINCIPAL < 8 || MENUPRINCIPAL > 1){
             printf("A las %d:00 PM tu consumo fue de: %.2f KWH\n", i, HORA[i]);
         }
     }
-    if (TOTALDIAS == 0){
-    printf("%s, no se han ingresado datos en captura 24 hrs\n", USER);
-}
     printf("--------------------*ੈ ✩ ‧₊˚༺ ☆ ༻ * ੈ ✩‧₊˚--------------------\n");
     printf("-------------------- D I A G N O S T I C O --------------------\n");
     printf("El total del consumo de kwh fue de: %.2f kilovatios en el día \n", TOTALDIAS);
@@ -223,11 +223,10 @@ else if (MENUPRINCIPAL < 8 || MENUPRINCIPAL > 1){
         HORA[i] = HORASAUTO[i] + HORASREPORTE[i];
         DIAS[DIACTUAL][i] = HORA[i];
         }
-        for(int i = 0; i < 24; i++){
-        HORA[i]=0;
-        HORASREPORTE[i] = 0;
-        HSIMULADOR[i] = 0;
-        }
+        HORA[24] = {0};
+        HORASREPORTE[24] = {0};
+        HSIMULADOR[24] = {0};
+        
         DIACTUAL++;
         TOTALDIAS=0;
         TOTALPAGAR=0;
@@ -275,9 +274,11 @@ else if (MENUPRINCIPAL < 8 || MENUPRINCIPAL > 1){
     printf("Ingrese el segundo día que deseas comparar: ");
     scanf("%d", &DIA2);
     if ( DIACTUAL < 0 || DIA1 > DIACTUAL || DIA2 < 0 || DIA2 > DIACTUAL) {
-        printf("\nDia inexiste.\n");
+        printf("\n%s ingresaste un dia o ambos inexiste.\n", USER);
         break;
     }
+    TOTALDIA1=0;
+    TOTALDIA2=0;
     for (int i = 0; i < 24; i++) {
         TOTALDIA1 = TOTALDIA1 + DIAS[DIA1][i];
         TOTALDIA2 = TOTALDIA2 + DIAS[DIA2][i];
@@ -301,7 +302,6 @@ else if (MENUPRINCIPAL < 8 || MENUPRINCIPAL > 1){
     }
     printf("------------------------------------------------------------\n");
     break;
-    }
     }
     } while (MENUPRINCIPAL != 9);
     
