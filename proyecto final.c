@@ -143,9 +143,9 @@ if(MENUPRINCIPAL > 8 || MENUPRINCIPAL < 1){
         HORA[i] = HORASAUTO[i] + HORASREPORTE[i];
         TOTALDIAS = TOTALDIAS + HORA[i];
     }
-    if (TOTALDIAS == 0){
+    if (TOTALDIAS == 0 && OPCIONAIREYREFRI == 4){
     printf("\n------------------------------------------------------------\n");
-    printf("%s, no se han ingresado datos en captura 24HRS\nni tampoco tienes aparatos conectado las 24HRS\n", USER);
+    printf("%s, no se han ingresado datos en captura 24HRS\nAdemas tampoco tienes aparatos conectado las 24HRS\n", USER);
     break;
 }
     TOTALPAGAR = TOTALDIAS * PRECIOKWH;
@@ -183,6 +183,7 @@ if(MENUPRINCIPAL > 8 || MENUPRINCIPAL < 1){
             break;
         case 3:
     simuladorAhorro(HSIMULADOR, USER);
+    break;
         case 4:
         TOTALBASE=0;
         TOTALSIMULADOR=0;//Evitar que si el usuario vueleve a entrrar a sinulador se sobre escriban los valores 
