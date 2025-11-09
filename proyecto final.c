@@ -223,9 +223,11 @@ if(MENUPRINCIPAL > 8 || MENUPRINCIPAL < 1){
         HORA[i] = HORASAUTO[i] + HORASREPORTE[i];
         DIAS[DIACTUAL][i] = HORA[i];
         }
-        HORA[24] = {0};
-        HORASREPORTE[24] = {0};
-        HSIMULADOR[24] = {0};
+        for (int i = 0; i < 24; i++) {
+        HORA[i] = 0;
+        HORASREPORTE[i] = 0;
+        HSIMULADOR[i] = 0;
+}
         
         DIACTUAL++;
         TOTALDIAS=0;
